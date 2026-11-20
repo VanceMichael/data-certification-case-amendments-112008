@@ -1,0 +1,11 @@
+{
+  "case": "A92",
+  "change": "C-112",
+  "market": "R1",
+  "auditDay": "2026-12-08",
+  "retireSite": "G-4",
+  "operation": "切割",
+  "preferredLabel": "青港分部",
+  "alternativeSite": "D-5",
+  "unaffectedOperation": "过秤"
+}

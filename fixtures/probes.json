@@ -1,0 +1,14 @@
+[
+  {
+    "step": "update",
+    "path": "/cases/A92",
+    "field": null,
+    "value": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>申请 A92</title><main><h1>申请 A92</h1><p>受理版本 V2</p><p>场址资格目录已改版</p><p>关联市场 R1，审核日 2026-12-08</p><form action=\"/cases/A92/review\" method=\"post\"><label>变更编号<input name=\"change\"></label><label>新场址编号<input name=\"site\"></label><label>动作<select name=\"action\"><option value=\"both\">补加并终止</option><option value=\"add\">仅补加</option><option value=\"end\">仅终止</option></select></label><button>查看复核页</button></form></main></html>"
+  },
+  {
+    "step": "partial",
+    "path": "/receipts/A92",
+    "field": null,
+    "value": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>办理回执</title><main><h1>办理回执</h1><p>C-112 已接收补加 D-5 切割</p><p>C-112 尚未接收 G-4 切割终止</p><a href=\"/receipts/A92/remaining\">办理剩余终止</a></main></html>"
+  }
+]

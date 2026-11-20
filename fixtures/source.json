@@ -1,0 +1,120 @@
+{
+  "steps": [
+    "draft",
+    "update",
+    "partial",
+    "settled"
+  ],
+  "routes": {
+    "common": {
+      "GET /cases": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>认证联办</title><main><h1>认证联办</h1><nav><a href=\"/cases/A92\">申请 A92</a> · <a href=\"/directory\">审核场址目录</a> · <a href=\"/receipts/A92\">办理回执</a></nav></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "GET /directory": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>审核场址目录</title><main><h1>审核场址目录</h1><table><caption>名称、地址编号、市场、工序、审核日期</caption><tbody><tr><td>青港分部</td><td>B-7</td><td>R1</td><td>切割、过秤</td><td>2026-01-01 至 2027-01-01</td></tr><tr><td>青港分部</td><td>B-8</td><td>R1</td><td>切割</td><td>2026-12-10 至 2027-01-01</td></tr><tr><td>远海仓</td><td>D-5</td><td>R1</td><td>切割</td><td>2026-11-01 至 2027-01-01</td></tr></tbody></table></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "POST /cases/A92/apply": {
+        "status": 504,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>等待受理</title><main><h1>等待受理</h1><p>已交申请中心，回执待回传。</p><a href=\"/receipts/A92\">办理回执</a></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "GET /receipts/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>办理回执</title><main><h1>办理回执</h1><p>受理中心尚未反馈 C-112</p></main></html>",
+        "type": "text/html; charset=utf-8"
+      }
+    },
+    "draft": {
+      "GET /cases/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>申请 A92</title><main><h1>申请 A92</h1><p>受理版本 V1</p><p>旧址 G-4 已受理切割和过秤</p><p>关联市场 R1，审核日 2026-12-08</p><form action=\"/cases/A92/review\" method=\"post\"><label>变更编号<input name=\"change\"></label><label>新场址编号<input name=\"site\"></label><label>动作<select name=\"action\"><option value=\"both\">补加并终止</option><option value=\"add\">仅补加</option><option value=\"end\">仅终止</option></select></label><button>查看复核页</button></form></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "POST /cases/A92/review": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>复核页</title><main><h1>复核页</h1><p>申请 A92，变更 {{change}}</p><p>拟选场址 {{site}}，动作 {{action}}</p><p>受理版本 V1，补加 B-7 的切割，终止 G-4 的切割。</p><p>过秤继续在 G-4 审核。</p><form action=\"/cases/A92/apply\" method=\"post\"><label>变更编号<input name=\"change\" value=\"C-112\"></label><label>受理版本<input name=\"version\" value=\"V1\"></label><button>提交本次补报</button></form></main></html>",
+        "type": "text/html; charset=utf-8",
+        "formFields": [
+          "change",
+          "site",
+          "action"
+        ]
+      }
+    },
+    "update": {
+      "GET /directory": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>审核场址目录</title><main><h1>审核场址目录</h1><table><caption>名称、地址编号、市场、工序、审核日期</caption><tbody><tr><td>青港分部</td><td>B-7</td><td>R1</td><td>过秤</td><td>2026-01-01 至 2027-01-01</td></tr><tr><td>青港分部</td><td>B-8</td><td>R1</td><td>切割</td><td>2026-12-10 至 2027-01-01</td></tr><tr><td>远海仓</td><td>D-5</td><td>R1</td><td>切割</td><td>2026-11-01 至 2027-01-01</td></tr></tbody></table></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "GET /cases/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>申请 A92</title><main><h1>申请 A92</h1><p>受理版本 V2</p><p>场址资格目录已改版</p><p>关联市场 R1，审核日 2026-12-08</p><form action=\"/cases/A92/review\" method=\"post\"><label>变更编号<input name=\"change\"></label><label>新场址编号<input name=\"site\"></label><label>动作<select name=\"action\"><option value=\"both\">补加并终止</option><option value=\"add\">仅补加</option><option value=\"end\">仅终止</option></select></label><button>查看复核页</button></form></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "POST /cases/A92/review": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>复核页</title><main><h1>复核页</h1><p>申请 A92，变更 {{change}}</p><p>拟选场址 {{site}}，动作 {{action}}</p><p>受理版本 V2，补加 D-5 的切割，终止 G-4 的切割。</p><p>过秤继续在 G-4 审核。</p><form action=\"/cases/A92/apply\" method=\"post\"><label>变更编号<input name=\"change\" value=\"C-112\"></label><label>受理版本<input name=\"version\" value=\"V2\"></label><button>提交本次补报</button></form></main></html>",
+        "type": "text/html; charset=utf-8",
+        "formFields": [
+          "change",
+          "site",
+          "action"
+        ]
+      }
+    },
+    "partial": {
+      "GET /cases/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>申请 A92</title><main><h1>申请 A92</h1><p>受理版本 V3</p><p>切割补加已收，终止仍待处理</p><p>关联市场 R1，审核日 2026-12-08</p><form action=\"/cases/A92/review\" method=\"post\"><label>变更编号<input name=\"change\"></label><label>新场址编号<input name=\"site\"></label><label>动作<select name=\"action\"><option value=\"both\">补加并终止</option><option value=\"add\">仅补加</option><option value=\"end\">仅终止</option></select></label><button>查看复核页</button></form></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "POST /cases/A92/review": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>复核页</title><main><h1>复核页</h1><p>申请 A92，变更 {{change}}</p><p>拟选场址 {{site}}，动作 {{action}}</p><p>受理版本 V3，补加 D-5 的切割，终止 G-4 的切割。</p><p>过秤继续在 G-4 审核。</p><form action=\"/cases/A92/apply\" method=\"post\"><label>变更编号<input name=\"change\" value=\"C-112\"></label><label>受理版本<input name=\"version\" value=\"V3\"></label><button>提交本次补报</button></form></main></html>",
+        "type": "text/html; charset=utf-8",
+        "formFields": [
+          "change",
+          "site",
+          "action"
+        ]
+      },
+      "GET /receipts/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>办理回执</title><main><h1>办理回执</h1><p>C-112 已接收补加 D-5 切割</p><p>C-112 尚未接收 G-4 切割终止</p><a href=\"/receipts/A92/remaining\">办理剩余终止</a></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "GET /receipts/A92/remaining": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>继续剩余办理</title><main><h1>继续剩余办理</h1><p>受理版本 V3，仅终止 G-4 切割。</p><form action=\"/cases/A92/apply\" method=\"post\"><label>补报编号<input name=\"change\" value=\"C-112\"></label><input name=\"scope\" type=\"hidden\" value=\"end\"><button>提交剩余终止</button></form></main></html>",
+        "type": "text/html; charset=utf-8"
+      }
+    },
+    "settled": {
+      "GET /cases/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>申请 A92</title><main><h1>申请 A92</h1><p>受理版本 V4</p><p>切割补加与旧址终止均已受理</p><p>关联市场 R1，审核日 2026-12-08</p><form action=\"/cases/A92/review\" method=\"post\"><label>变更编号<input name=\"change\"></label><label>新场址编号<input name=\"site\"></label><label>动作<select name=\"action\"><option value=\"both\">补加并终止</option><option value=\"add\">仅补加</option><option value=\"end\">仅终止</option></select></label><button>查看复核页</button></form></main></html>",
+        "type": "text/html; charset=utf-8"
+      },
+      "POST /cases/A92/review": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>复核页</title><main><h1>复核页</h1><p>申请 A92，变更 {{change}}</p><p>拟选场址 {{site}}，动作 {{action}}</p><p>受理版本 V4，补加 D-5 的切割，终止 G-4 的切割。</p><p>过秤继续在 G-4 审核。</p><form action=\"/cases/A92/apply\" method=\"post\"><label>变更编号<input name=\"change\" value=\"C-112\"></label><label>受理版本<input name=\"version\" value=\"V4\"></label><button>提交本次补报</button></form></main></html>",
+        "type": "text/html; charset=utf-8",
+        "formFields": [
+          "change",
+          "site",
+          "action"
+        ]
+      },
+      "GET /receipts/A92": {
+        "status": 200,
+        "body": "<!doctype html><html lang=\"zh-CN\"><meta charset=\"utf-8\"><title>办理回执</title><main><h1>办理回执</h1><p>C-112 已接收补加 D-5 切割</p><p>C-112 已接收 G-4 切割终止</p><p>G-4 过秤原受理仍有效</p></main></html>",
+        "type": "text/html; charset=utf-8"
+      }
+    }
+  }
+}
